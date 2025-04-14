@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": { // ここで任意のパスを設定する
+    "paths": {
       "@/lib/*": [
         "./lib/*"
       ]
     },
-    "target": "ES2017",
+    "target": "ES2022",
     "lib": [
       "dom",
       "dom.iterable",
@@ -44,6 +44,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "amplify"
   ]
 }
