@@ -1,31 +1,32 @@
 'use client'
 
 import { useEffect, useState } from "react";
-
-// import { Amplify } from "aws-amplify";
+import { Amplify } from "aws-amplify";
 import {
   signInWithRedirect,
   getCurrentUser,
   fetchAuthSession,
   signOut,
 } from "aws-amplify/auth";
-// import outputs from "../amplify_outputs.json"
-
-// const COGNITO_DOMAIN = 'https://ap-northeast-1fvgvh0wsz.auth.ap-northeast-1.amazoncognito.com';
-// const CLIENT_ID = '68gum8efm44fbnotgqvq3651jq';
-// const REDIRECT_URI = 'http://localhost:3000/loggedin';
-// const RESPONSE_TYPE = 'code';
-// const SCOPE = 'openid+email+profile';
-// const loginUrl = `${COGNITO_DOMAIN}/login?response_type=${RESPONSE_TYPE}&client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(
-//   REDIRECT_URI
-// )}&scope=${SCOPE}`;
-
-// Amplify.configure(outputs);
+import {
+  configPoolA,
+  configPoolB,
+} from "./configure.js"
 
 export default function Page() {
   const [user, setUser] = useState<string>("");
   const [session, setSession] = useState<string>("");
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+
+  function signInA() {
+    Amplify.configure(configPoolA);
+    signInWithRedirect();
+  }
+
+  function signInB() {
+    Amplify.configure(configPoolB);
+    signInWithRedirect();
+  }
 
   useEffect(() => {
     const init = async () => {
@@ -48,15 +49,19 @@ export default function Page() {
         <h1>Cognito User Pools sample with external IdP</h1>
       </div>
       <div>
-        <button onClick={() => signInWithRedirect()} disabled={isSignedIn}>
-          Open Managed Login
+        <button onClick={signInA} disabled={isSignedIn}>
+          ユーザープールAでログイン
+        </button>
+        <br />
+        <button onClick={signInB} disabled={isSignedIn}>
+          ユーザープールBでログイン
         </button>
         <button onClick={() => signOut()} disabled={!isSignedIn}>
-          Sign Out
+          サインアウト
         </button>
       </div>
       <div>
-        <label>Signed In?：</label>
+        <label>サインイン状況：</label>
         <span>{isSignedIn ? "TRUE" : "FALSE"}</span>
       </div>
       <div>
