@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { Amplify } from "aws-amplify";
+// import { Amplify } from "aws-amplify";
 import {
   signInWithRedirect,
   getCurrentUser,
