@@ -11,7 +11,7 @@ import {
 import {
   configPoolA,
   configPoolB,
-} from "./configure.js"
+} from "./configure"
 
 export default function Page() {
   const [user, setUser] = useState<string>("");
