@@ -9,7 +9,7 @@ import {
   fetchAuthSession,
   signOut,
 } from "aws-amplify/auth";
-import outputs from "../amplify_outputs.json"
+// import outputs from "../amplify_outputs.json"
 
 // const COGNITO_DOMAIN = 'https://ap-northeast-1fvgvh0wsz.auth.ap-northeast-1.amazoncognito.com';
 // const CLIENT_ID = '68gum8efm44fbnotgqvq3651jq';
@@ -20,7 +20,7 @@ import outputs from "../amplify_outputs.json"
 //   REDIRECT_URI
 // )}&scope=${SCOPE}`;
 
-Amplify.configure(outputs);
+// Amplify.configure(outputs);
 
 export default function Page() {
   const [user, setUser] = useState<string>("");
