@@ -50,11 +50,11 @@ export default function Page() {
       </div>
       <div>
         <button onClick={signInA} disabled={isSignedIn}>
-          ユーザープールAでログイン
+          ユーザープール1でログイン
         </button>
         <br />
         <button onClick={signInB} disabled={isSignedIn}>
-          ユーザープールBでログイン
+          ユーザープール2でログイン
         </button>
         <button onClick={() => signOut()} disabled={!isSignedIn}>
           サインアウト
