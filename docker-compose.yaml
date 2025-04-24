@@ -9,11 +9,3 @@ services:
      - .:/app
    stdin_open: true
    tty: true
-
-# volumes:
-#   test-ts-site-volume:
-#     name: test-ts-site
-#     driver_opts:
-#       o: bind
-#       device: .
-#       type: none

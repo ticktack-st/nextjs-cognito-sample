@@ -1,1 +1,1 @@
-# nextjs-cognito-sample
+# amplify-gen2-test
