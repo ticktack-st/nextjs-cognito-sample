@@ -46,7 +46,7 @@ export default function Page() {
   return (
     <div>
       <div>
-        <h1>Cognito User Pools sample with external IdP</h1>
+        <h1>複数ユーザープールのログイン確認ページ</h1>
       </div>
       <div>
         <button onClick={signInA} disabled={isSignedIn}>
