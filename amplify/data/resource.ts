@@ -1,3 +1,9 @@
+/**
+ * app sync + dynamodbを作成するCDKのリソース定義
+ * 記載を変えればRDSも作成できる
+ * defineDataでdynamoDBのスキーマごと定義できる
+ */
+
 import { a, defineData, type ClientSchema } from '@aws-amplify/backend';
 
 const schema = a.schema({

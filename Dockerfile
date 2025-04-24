@@ -6,7 +6,9 @@ EXPOSE 3000
 
 RUN apt-get update && apt-get install -y \
     curl \
-    zip
+    less \
+    zip \
+    awscli
 RUN npm install -g npm@11.3 \
     && npm install -g @aws-amplify/cli \
     && npm install -g npm-check-updates \
