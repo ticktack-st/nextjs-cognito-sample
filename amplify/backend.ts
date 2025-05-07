@@ -7,7 +7,12 @@
 
 import { defineBackend } from '@aws-amplify/backend';
 import { data } from './data/resource';
+import { defineRds } from './custom/rds/resource';
 
-defineBackend({
+const backend = defineBackend({
   data,
+});
+
+const rds = defineRds({
+  stack: backend.createStack('RDSStack'),
 });
