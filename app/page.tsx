@@ -2,29 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { Amplify } from "aws-amplify";
-import { InvokeCommand, LambdaClient } from '@aws-sdk/client-lambda'
 import {
   signInWithRedirect,
   getCurrentUser,
   fetchAuthSession,
   signOut,
 } from "aws-amplify/auth";
-import { generateClient } from "aws-amplify/api"
 import {
   configPoolA,
   configPoolB,
 } from "./configure"
-import outputs from "../amplify_outputs.json"
-import { parseAmplifyConfig } from "aws-amplify/utils";
 
 export default function Page() {
   const [user, setUser] = useState<string>("");
   const [session, setSession] = useState<string>("");
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
-  const client = generateClient();
-  const awsRegion = "ap-northeast-1";
-
-  const functionName = outputs.custom.helloWorldFunctionName;
 
   function signInA() {
     Amplify.configure(configPoolA);
@@ -35,7 +27,6 @@ export default function Page() {
     Amplify.configure(configPoolB);
     signInWithRedirect();
   }
-
 
   async function callLambda() {
     // const response = await client.get("/amplify/function/dbMigration/helloWorld");
