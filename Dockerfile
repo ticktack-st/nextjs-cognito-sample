@@ -5,6 +5,7 @@ WORKDIR /app
 EXPOSE 3000
 
 RUN apt-get update && apt-get install -y \
+    vim \
     curl \
     less \
     zip \
