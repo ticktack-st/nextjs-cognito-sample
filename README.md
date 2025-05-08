@@ -26,3 +26,11 @@ https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html#sso-conf
 - Amplify自身に付与されたIAMロールの設定
 - SecretManager/ParameterStoreの設定
 - cognitoのユーザープール作成（複数ユーザープールが必要など特殊要件）
+
+### Migration
+
+- Prizmaを使うことを想定します
+  - デプロイ時およびサンドボックス更新時に自動で適用されるような形にしたい
+  - トップレベルにamplifyフォルダを入れて管理
+  - クライアント側はlibフォルダを作って利用
+  - prismaの接続情報は
