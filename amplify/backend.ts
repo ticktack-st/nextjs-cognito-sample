@@ -10,7 +10,7 @@ import { Stack } from "aws-cdk-lib";
 import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { data } from './data/resource';
 import { defineRds } from './custom/rds/resource';
-import { dbMigration } from './function/dbMigration/resource';
+import { dbMigration } from './functions/dbMigration/resource';
 import {
   AuthorizationType,
   CognitoUserPoolsAuthorizer,
