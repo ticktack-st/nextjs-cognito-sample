@@ -14,7 +14,7 @@ async function getDatabaseUrl() {
 
 export const handler: Handler = async (event: any, context: Context) => {
   try {
-    process.env.PRISMA_CLI_BINARY_TARGETS = "native,rhel-openssl-1.0.x";
+    process.env.PRISMA_CLI_BINARY_TARGETS = "native,rhel-openssl-3.0.x";
     process.env.DATABASE_URL = await getDatabaseUrl();
     execSync("npx prisma migrate deploy", { stdio: "inherit" });
     return {
