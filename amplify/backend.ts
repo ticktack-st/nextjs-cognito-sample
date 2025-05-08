@@ -11,9 +11,9 @@ import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { data } from './data/resource';
 import { defineRds } from './custom/rds/resource';
 import { dbMigration } from './functions/dbMigration/resource';
+import { prismaMigrate } from './functions/prismaMigrate/src/resource';
 import {
   AuthorizationType,
-  CognitoUserPoolsAuthorizer,
   Cors,
   LambdaIntegration,
   RestApi,
@@ -22,6 +22,7 @@ import {
 const backend = defineBackend({
   data,
   dbMigration,
+  prismaMigrate
 });
 
 const rds = defineRds({
