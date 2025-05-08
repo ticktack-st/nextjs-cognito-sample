@@ -1,5 +1,5 @@
 import type { Handler, Context } from 'aws-lambda';
-const { execSync } = require("child_process");
+import { execSync } from "child_process";
 import { SecretsManagerClient, GetSecretValueCommand } from "@aws-sdk/client-secrets-manager";
 
 const client = new SecretsManagerClient({ region: "ap-northeast-1" });
