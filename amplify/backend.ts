@@ -11,7 +11,7 @@ import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { data } from './data/resource';
 import { defineRds } from './custom/rds/resource';
 import { dbMigration } from './functions/dbMigration/resource';
-import { prisma } from './functions/prisma/resource';
+import { prisma } from './functions/f_prisma/resource';
 import {
   AuthorizationType,
   Cors,

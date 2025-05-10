@@ -42,6 +42,5 @@ amplifyconfiguration*
 
 .vscode/
 
-amplify/functions/prisma/node_modules/*
-!amplify/functions/prisma/node_modules/.prisma
-!amplify/functions/prisma/node_modules/@prisma
+amplify/functions/f_prisma/node_modules
+amplify/functions/layer/prisma/node_modules
