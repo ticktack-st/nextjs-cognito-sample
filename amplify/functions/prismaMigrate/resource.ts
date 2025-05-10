@@ -86,7 +86,7 @@ export function defineCustomFunction({ stack }: { stack: Stack }) {
           ];
         },
       },
-      forceDockerBundling: true,
+      forceDockerBundling: false,
     },
   });
   return prismaMigrate;
