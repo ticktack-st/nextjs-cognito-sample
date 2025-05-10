@@ -60,7 +60,7 @@ export function defineCustomFunction({ stack }: { stack: Stack }) {
   const securityGroup = SecurityGroup.fromSecurityGroupId(stack, 'ExistingSG', 'sg-0738e478ff2be7ccb'); // ご自身のセキュリティグループ ID に置き換えてください
 
   const prismaMigrate = new NodejsFunction(stack, 'prismaMigrate', {
-    entry: './handler.ts',
+    entry: './functions/prismaMigrate/handler.ts',
     handler: 'handler',
     runtime: Runtime.NODEJS_22_X,
     timeout: Duration.seconds(20),
