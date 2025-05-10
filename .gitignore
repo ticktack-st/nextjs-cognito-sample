@@ -44,3 +44,4 @@ amplifyconfiguration*
 
 amplify/functions/f_prisma/node_modules
 amplify/functions/layer/prisma/node_modules
+amplify/functions/prismaMigrate/node_modules
