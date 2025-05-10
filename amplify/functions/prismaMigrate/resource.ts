@@ -1,5 +1,4 @@
 // import { defineFunction } from '@aws-amplify/backend';
-import * as path from 'path';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 // import * as ec2 from 'aws-cdk-lib/aws-ec2';
@@ -61,7 +60,7 @@ export function defineCustomFunction({ stack }: { stack: Stack }) {
   const securityGroup = SecurityGroup.fromSecurityGroupId(stack, 'ExistingSG', 'sg-0738e478ff2be7ccb'); // ご自身のセキュリティグループ ID に置き換えてください
 
   const prismaMigrate = new NodejsFunction(stack, 'prismaMigrate', {
-    entry: path.join(__dirname, 'handler.ts'), // 絶対パスを指定
+    entry: './handler.ts',
     handler: 'handler',
     runtime: Runtime.NODEJS_22_X,
     timeout: Duration.seconds(20),
