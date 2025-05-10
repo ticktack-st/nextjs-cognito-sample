@@ -7,7 +7,11 @@ import { Duration } from 'aws-cdk-lib';
 // import * as path from 'path';
 // import { Stack, StackProps } from 'aws-cdk-lib';
 // import { Construct } from 'constructs';
-import { Vpc, SecurityGroup } from 'aws-cdk-lib/aws-ec2';
+import {
+  SubnetType,
+} from "aws-cdk-lib/aws-ec2";
+import { SecurityGroup } from 'aws-cdk-lib/aws-ec2';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import { Stack } from "aws-cdk-lib";
 
 // export const prismaMigrateHandler = defineFunction((scope) => {
@@ -45,9 +49,12 @@ import { Stack } from "aws-cdk-lib";
 
 export function defineCustomFunction({ stack }: { stack: Stack }) {
   // 既存の VPC を取得
-  const vpc = Vpc.fromLookup(stack, 'ExistingVPC', {
-    vpcId: 'vpc-0103532b9805239be', // ご自身の VPC ID に置き換えてください
+  const vpc = ec2.Vpc.fromVpcAttributes(stack, 'MyImportedVPC', {
+    vpcId: 'vpc-0103532b9805239be',
+    availabilityZones: ['ap-northeast-1a', 'ap-northeast-1c'],
+    publicSubnetIds: ['subnet-0aa1e91e4f0654614', 'subnet-02b7a06368ef1a819'],
   });
+
 
   // 既存のセキュリティグループを取得
   const securityGroup = SecurityGroup.fromSecurityGroupId(stack, 'ExistingSG', 'sg-0738e478ff2be7ccb'); // ご自身のセキュリティグループ ID に置き換えてください
@@ -60,8 +67,10 @@ export function defineCustomFunction({ stack }: { stack: Stack }) {
     functionName: 'prisma-migrate',
     memorySize: 128,
     vpc,
-    // vpcSubnets: privateSubnets,
-    securityGroups: [securityGroup],
+    vpcSubnets: {
+      subnetType: SubnetType.PUBLIC,
+    },
+    securityGroups: [ec2.SecurityGroup.fromSecurityGroupId(stack, 'MySecurityGroup', 'sg-0738e478ff2be7ccb')],
     environment: {
       PRISMA_QUERY_ENGINE_LIBRARY: "./libquery_engine-rhel-openssl-3.0.x.so.node"
     },
