@@ -1,9 +1,9 @@
 -- CreateTable
 CREATE TABLE "Post" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "title" TEXT NOT NULL,
-    "content" TEXT,
+    "id" int NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" VARCHAR NOT NULL,
+    "content" VARCHAR,
     "published" BOOLEAN NOT NULL,
-    "createdAt" TEXT NOT NULL,
-    "updatedAt" TEXT NOT NULL
+    "createdAt" DATETIME NOT NULL,
+    "updatedAt" DATETIME NOT NULL
 );
