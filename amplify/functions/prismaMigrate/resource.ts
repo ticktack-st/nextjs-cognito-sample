@@ -1,6 +1,6 @@
 import { defineFunction } from '@aws-amplify/backend';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Code, Function, Runtime } from "aws-cdk-lib/aws-lambda";
+import { Runtime } from "aws-cdk-lib/aws-lambda";
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import { Vpc } from 'aws-cdk-lib/aws-ec2';
 import { Duration } from 'aws-cdk-lib';
@@ -22,7 +22,7 @@ export const prismaMigrate = defineFunction((scope) => {
 
   return new NodejsFunction(scope, 'prismaMigrate', {
     entry: path.join(__dirname, 'handler.ts'),
-    handler: 'handler',
+    handler: 'prisma-migrate',
     runtime: Runtime.NODEJS_22_X,
     timeout: Duration.seconds(20),
     memorySize: 128,
