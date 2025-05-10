@@ -11,7 +11,7 @@ import * as path from 'path';
 export const prismaMigrateHandler = defineFunction((scope) => {
 
   return new NodejsFunction(scope, 'prismaMigrate', {
-    entry: path.join(__dirname, 'handler.ts'),
+    entry: './handler.ts',
     runtime: Runtime.NODEJS_22_X,
     timeout: Duration.seconds(20),
     memorySize: 128,
