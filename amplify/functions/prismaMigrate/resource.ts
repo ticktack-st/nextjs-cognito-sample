@@ -5,11 +5,23 @@ import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import { Vpc } from 'aws-cdk-lib/aws-ec2';
 import { Duration } from 'aws-cdk-lib';
 import * as path from 'path';
-import { Stack } from 'aws-cdk-lib';
+import { Stack, StackProps } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
+export class MyStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
+    super(scope, id, {
+      ...props,
+      env: {
+        account: '922848404494', // ご自身の AWS アカウント ID に置き換えてください
+        region: 'ap-northeast-1' // ご自身の使用するリージョンに置き換えてください
+      }
+    });
+  }
+}
 
 export const prismaMigrateHandler = defineFunction((scope) => {
-  const stack = Stack.of(scope);
+  const stack = MyStack.of(scope);
 
   const vpc = Vpc.fromLookup(stack, 'ExistingVPC', {
     vpcId: 'vpc-0103532b9805239be', // 既存の VPC の ID
