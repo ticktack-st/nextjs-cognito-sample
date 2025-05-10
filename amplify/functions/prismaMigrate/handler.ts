@@ -31,7 +31,7 @@ export const handler: Handler = async (event: any, _context: Context) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
 
   // 引数なしの場合は prisma migrate deploy を実行
-  const command: string = 'prisma migrate deploy';
+  const command: string = 'deploy';
 
   // Prisma コマンドを実行
   await execMigrate(command);
