@@ -8,7 +8,7 @@ import * as path from 'path';
 import { Stack } from 'aws-cdk-lib';
 
 
-export const prismaMigrate = defineFunction((scope) => {
+export const prismaMigrateHandler = defineFunction((scope) => {
   const stack = Stack.of(scope);
 
   const vpc = Vpc.fromLookup(stack, 'ExistingVPC', {
