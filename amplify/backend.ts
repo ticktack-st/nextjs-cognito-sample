@@ -11,7 +11,7 @@ import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { data } from './data/resource';
 import { defineRds } from './custom/rds/resource';
 import { dbMigration } from './functions/dbMigration/resource';
-import { prismaMigrateHandler } from './functions/prismaMigrate/resource';
+import { defineCustomFunction } from './functions/prismaMigrate/resource';
 import {
   AuthorizationType,
   Cors,
@@ -24,11 +24,14 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 const backend = defineBackend({
   data,
   dbMigration,
-  prismaMigrateHandler
+  // prismaMigrateHandler
 });
 
 const rds = defineRds({
   stack: backend.createStack('RDSStack'),
+});
+const prismaMigrate = defineCustomFunction({
+  stack: backend.createStack('PrismaMigrateStack'),
 });
 
 // create a new API stack
