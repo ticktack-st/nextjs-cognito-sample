@@ -69,6 +69,7 @@ export function defineCustomFunction({ stack }: { stack: Stack }) {
     vpcSubnets: {
       subnetType: SubnetType.PUBLIC,
     },
+    allowPublicSubnet: true,
     securityGroups: [ec2.SecurityGroup.fromSecurityGroupId(stack, 'MySecurityGroup', 'sg-0738e478ff2be7ccb')],
     environment: {
       PRISMA_QUERY_ENGINE_LIBRARY: "./libquery_engine-rhel-openssl-3.0.x.so.node"
