@@ -18,6 +18,8 @@ import {
   LambdaIntegration,
   RestApi,
 } from "aws-cdk-lib/aws-apigateway";
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as iam from 'aws-cdk-lib/aws-iam';
 
 const backend = defineBackend({
   data,
@@ -73,6 +75,25 @@ const apiRestPolicy = new Policy(apiStack, "RestApiPolicy", {
     }),
   ],
 });
+
+// const vpc = ec2.Vpc.fromLookup(backend.createStack('VpcLookupStack'), 'ExistingVPC', {
+//   vpcId: 'vpc-0103532b9805239be', // ご自身の VPC ID に置き換えてください
+// });
+// const lambdaSecurityGroup = new ec2.SecurityGroup(backend.createStack('SecurityGroupStack'), 'LambdaSG', {
+//   vpc,
+//   description: 'Lambda function security group',
+//   allowAllOutbound: true,
+// });
+// const existingSecurityGroup = ec2.SecurityGroup.fromSecurityGroupId(
+//   backend.createStack('ExistingSGStack'),
+//   'ExistingSecurityGroup',
+//   'sg-0738e478ff2be7ccb' // ご自身のセキュリティグループ ID に置き換えてください
+// );
+// backend.prismaMigrateHandler.resources.lambda.addSecurityGroup(existingSecurityGroup);
+
+// backend.prismaMigrateHandler.resources.lambda.role?.addManagedPolicy(
+//   iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AWSLambdaVPCAccessExecutionRole')
+// );
 
 + backend.addOutput({
   custom: {
