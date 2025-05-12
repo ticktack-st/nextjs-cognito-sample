@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react";
 import { Amplify } from "aws-amplify";
 import {
@@ -78,6 +79,7 @@ export default function Page() {
     <div>
       <div>
         <h1>複数ユーザープールのログイン確認ページ</h1>
+        <h1 className="text-3xl font-bold underline">Hello, Next.js!</h1>
       </div>
       <div>
         <button onClick={signInA} disabled={isSignedIn}>
@@ -111,6 +113,7 @@ export default function Page() {
         >
           呼び出す
         </button>
+        <Button>Click me</Button>
       </div>
     </div>
   );
