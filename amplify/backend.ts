@@ -18,12 +18,14 @@ import {
   LambdaIntegration,
   RestApi,
 } from "aws-cdk-lib/aws-apigateway";
+import { storage } from './storage/resource';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 
 const backend = defineBackend({
   data,
   dbMigration,
+  storage,
   // prismaMigrateHandler
 });
 
