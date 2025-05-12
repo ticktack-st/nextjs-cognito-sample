@@ -1,120 +1,71 @@
-'use client'
-
 import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react";
-import { Amplify } from "aws-amplify";
-import {
-  signInWithRedirect,
-  getCurrentUser,
-  fetchAuthSession,
-  signOut,
-} from "aws-amplify/auth";
-import {
-  configPoolA,
-  configPoolB,
-} from "./configure"
+// import { useEffect, useState } from "react";
+// import { Amplify } from "aws-amplify";
+// import {
+//   signInWithRedirect,
+//   signOut,
+// } from "aws-amplify/auth";
+// import {
+//   configPoolA,
+// } from "./configure"
 
 export default function Page() {
-  const [user, setUser] = useState<string>("");
-  const [session, setSession] = useState<string>("");
-  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+  //   const [user, setUser] = useState<string>("");
+  //   const [session, setSession] = useState<string>("");
+  //   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
 
-  function signInA() {
-    Amplify.configure(configPoolA);
-    signInWithRedirect();
-  }
+  //   function signInA() {
+  //     Amplify.configure(configPoolA);
+  //     signInWithRedirect();
+  //   }
 
-  function signInB() {
-    Amplify.configure(configPoolB);
-    signInWithRedirect();
-  }
-
-  async function callLambda() {
-    // const response = await client.get("/amplify/function/dbMigration/helloWorld");
-    // const data = await response.json();
-    // console.log(data.message);
-    //   const { credentials } = await fetchAuthSession();
-    //   console.log(credentials);
-    //   const lambda = new LambdaClient({ credentials: credentials, region: awsRegion });
-    //   const command = new InvokeCommand({
-    //     FunctionName: functionName,
-    //   });
-    //   const apiResponse = await lambda.send(command);
-    //   if (apiResponse.Payload) {
-    //     const payload = JSON.parse(new TextDecoder().decode(apiResponse.Payload));
-    //     // setText(payload.message)
-    //     return payload;
-    //   }
-    // } catch (error) {
-    //   console.error("Error calling Lambda function:", error);
-    //   throw error;
-    // }
-    // const res = await fetch(`${outputs.custom.API.myRestApi.endpoint}${functionName}`);
-    const res = await fetch(`https://0wuuh8wpjc.execute-api.ap-northeast-1.amazonaws.com/dev/items`);
-    console.log('%o', res);
-    if (!res.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await res.json();
-    console.log(data);
-    return data;
-  }
-
-  useEffect(() => {
-    const init = async () => {
-      try {
-        const user = await getCurrentUser();
-        const session = await fetchAuthSession();
-        setUser(JSON.stringify(user, null, 2));
-        setSession(JSON.stringify(session, null, 2));
-        setIsSignedIn(true);
-      } catch {
-        setIsSignedIn(false);
-      }
-    };
-    init();
-  }, [setUser, setSession, setIsSignedIn]);
+  // useEffect(() => {
+  //   const init = async () => {
+  //     try {
+  //       const user = await getCurrentUser();
+  //       const session = await fetchAuthSession();
+  //       setUser(JSON.stringify(user, null, 2));
+  //       setSession(JSON.stringify(session, null, 2));
+  //       setIsSignedIn(true);
+  //     } catch {
+  //       setIsSignedIn(false);
+  //     }
+  //   };
+  //   init();
+  // }, [setUser, setSession, setIsSignedIn]);
 
   return (
-    <div>
-      <div>
-        <h1>複数ユーザープールのログイン確認ページ</h1>
-        <h1 className="text-3xl font-bold underline">Hello, Next.js!</h1>
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="h-16">
+        <h1 className="mt-10 text-3xl font-bold">提出サイトメニュー</h1>
       </div>
-      <div>
-        <button onClick={signInA} disabled={isSignedIn}>
-          ユーザープール1でログイン
-        </button>
-        <br />
-        <button onClick={signInB} disabled={isSignedIn}>
-          ユーザープール2でログイン
-        </button>
-        <button onClick={() => signOut()} disabled={!isSignedIn}>
-          サインアウト
-        </button>
-      </div>
-      <div>
-        <label>サインイン状況：</label>
-        <span>{isSignedIn ? "TRUE" : "FALSE"}</span>
-      </div>
-      <div>
-        <pre>{user}</pre>
-        <pre>{session}</pre>
-      </div>
-      <div>
-        <h1>Amplify Lambda テスト</h1>
-        {/* <button onClick={callLambda}>呼び出す</button> */}
-        <button
-          onClick={async () => {
-            const result = await callLambda();
-            console.log(result);
-            alert(JSON.stringify(result, null, 2));
-          }}
-        >
-          呼び出す
-        </button>
-        <Button>Click me</Button>
+      <div className="m-10  flex justify-around flex-wrap">
+        <div className="p-4 w-1/2">
+          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
+            <h2 className="title-font font-medium text-3xl text-white">データアップロード</h2>
+            <p className="leading-relaxed text-white">データファイルをアップロードしてください</p>
+          </div>
+        </div>
+        <div className="p-4 w-1/2">
+          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
+            <h2 className="title-font font-medium text-3xl text-white">🚧過去データダウンロード</h2>
+            <p className="leading-relaxed text-white">過去のデータファイルをダウンロードできます</p>
+          </div>
+        </div>
+        <div className="p-4 w-1/2">
+          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
+            <h2 className="title-font font-medium text-3xl text-white">🚧提出履歴確認</h2>
+            <p className="leading-relaxed text-white">過去の提出履歴を確認できます</p>
+          </div>
+        </div>
+        <div className="p-4 w-1/2">
+          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
+            <h2 className="title-font font-medium text-3xl text-white">🚧取得ツールダウンロード</h2>
+            <p className="leading-relaxed text-white">取得ツールダウンロード画面へ</p>
+          </div>
+        </div>
       </div>
     </div>
-  );
-}
+  )
+};
