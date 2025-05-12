@@ -16,7 +16,7 @@ export function defineS3({ stack }: { stack: Stack }) {
   //   principals: [new iam.AnyPrincipal()],
   // });
 
-  const unauthenticatedRole = iam.Role.fromRoleArn(stack, 'UnauthRole', 'arn:aws:cognito-idp:ap-northeast-1:922848404494:userpool/ap-northeast-1_fVGVH0WsZ');
+  const unauthenticatedRole = iam.Role.fromRoleArn(stack, 'UnauthRole', 'arn:aws:iam::922848404494:role/service-role/submit-site-s3-access-role');
 
   bucket.addToResourcePolicy(new iam.PolicyStatement({
     effect: iam.Effect.ALLOW,
