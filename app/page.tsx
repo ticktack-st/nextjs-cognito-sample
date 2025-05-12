@@ -7,6 +7,7 @@
 // import {
 //   configPoolA,
 // } from "./configure"
+import Link from "next/link";
 
 export default function Page() {
   //   const [user, setUser] = useState<string>("");
@@ -41,10 +42,12 @@ export default function Page() {
       </div>
       <div className="m-10  flex justify-around flex-wrap">
         <div className="p-4 w-1/2">
-          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
-            <h2 className="title-font font-medium text-3xl text-white">データアップロード</h2>
-            <p className="leading-relaxed text-white">データファイルをアップロードしてください</p>
-          </div>
+          <Link href="/file-upload">
+            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
+              <h2 className="title-font font-medium text-3xl text-white">データアップロード</h2>
+              <p className="leading-relaxed text-white">データファイルをアップロードしてください</p>
+            </div>
+          </Link>
         </div>
         <div className="p-4 w-1/2">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
