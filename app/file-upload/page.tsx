@@ -40,7 +40,12 @@ function FileUploader() {
 
     const s3Client = new S3Client({
       region: 'ap-northeast-1',
-      credentials: undefined,
+      credentials: {
+        accessKeyId: "<accessKeyId>",
+        secretAccessKey: "<secretAccessKey>",
+        sessionToken: "<sessionToken>",
+      },
+      requestChecksumCalculation: "WHEN_REQUIRED",
     });
 
     try {
@@ -65,64 +70,3 @@ function FileUploader() {
     </div>
   );
 }
-
-
-// function FileUploader() {
-//   const [file, setFile] = useState<File | null>(null);
-
-//   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     setFile(event.target.files?.[0] || null);
-//   };
-
-//   const handleUpload = async () => {
-//     console.log('Uploading file:', file);
-//     if (!file) return;
-//     console.log('check');
-//     try {
-//       const result = await uploadData({
-//         path: `amplify-file-upload-test-bucket-ticktack/${file.name}`,
-//         data: file,
-//         options: {
-//           contentType: file.type,
-//           onProgress: ({ transferredBytes, totalBytes }) => {
-//             if (totalBytes) {
-//               console.log(
-//                 `Upload progress: ${Math.round(
-//                   (transferredBytes / totalBytes) * 100
-//                 )}%`
-//               );
-//             }
-//           },
-//         },
-//       }).result;
-//       console.log('Upload succeeded:', result);
-//     } catch (error) {
-//       console.error('Upload failed:', error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <input type="file" onChange={handleChange} />
-//       <Button onClick={handleUpload}>Upload</Button>
-//     </div>
-//   );
-// };
-
-
-
-
-// async function uploadFile(file) {
-//   try {
-//     const result = await Storage.put(file.name, file, {
-//       contentType: file.type,
-//     });
-//     console.log('ファイルのアップロードに成功しました:', result);
-//   } catch (error) {
-//     console.error('ファイルのアップロードに失敗しました:', error);
-//   }
-// }
-
-//   return (
-
-//   )
