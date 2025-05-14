@@ -8,7 +8,7 @@ import perfectionistPlugin from "eslint-plugin-perfectionist";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import securityPlugin from "eslint-plugin-security";
-import spellcheckPlugin from "eslint-plugin-spellcheck";
+// import spellcheckPlugin from "eslint-plugin-spellcheck";
 import unusedImportsPlugin from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -18,7 +18,7 @@ const flatCompat = new FlatCompat();
 export default [
   {
     // グローバルで読み込むファイルの拡張子
-    files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+    files: ["*.js", "*.jsx", "*.mjs", "*.ts", "*.tsx"],
   },
   {
     // グローバルで無視するファイル
@@ -39,6 +39,7 @@ export default [
       "tailwind.config.js",
       "tsconfig.json",
       "tsconfig.eslint.json",
+      "app/configure.ts",
     ],
   },
   {
@@ -67,10 +68,9 @@ export default [
     rules: {
       ...next.configs.recommended.rules,
       ...next.configs["core-web-vitals"].rules,
-      // ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
-      // ...securityPlugin.configs.recommended.rules,
+      ...securityPlugin.configs.recommended.rules,
     },
   },
   // Shareable Configs を有効化
@@ -98,14 +98,6 @@ export default [
     // recommended に含まれていない eslint-plugin-react のルールを有効化
     rules: {
       "react/destructuring-assignment": "error", // Props などの分割代入を強制
-      "react/function-component-definition": [
-        // コンポーネントの定義方法をアロー関数に統一
-        "error",
-        {
-          namedComponents: "arrow-function",
-          unnamedComponents: "arrow-function",
-        },
-      ],
       "react/hook-use-state": "error", // useState の返り値の命名を [value, setValue] に統一
       "react/jsx-boolean-value": "error", // boolean 型の Props の渡し方を統一
       "react/jsx-fragments": "error", // React Fragment の書き方を統一
@@ -172,20 +164,20 @@ export default [
       ],
     },
   },
-  {
-    // eslint-plugin-spellcheck の設定
-    plugins: { spellcheck: spellcheckPlugin },
-    rules: {
-      "spellcheck/spell-checker": [
-        "error",
-        {
-          minLength: 5, // 5 文字以上の単語をチェック
-          // チェックをスキップする単語の配列
-          skipWords: ["noreferrer", "compat", "tseslint", "globals", "fixup"],
-        },
-      ],
-    },
-  },
+  // {
+  //   // eslint-plugin-spellcheck の設定
+  //   plugins: { spellcheck: spellcheckPlugin },
+  //   rules: {
+  //     "spellcheck/spell-checker": [
+  //       "error",
+  //       {
+  //         minLength: 5, // 5 文字以上の単語をチェック
+  //         // チェックをスキップする単語の配列
+  //         skipWords: ["noreferrer", "compat", "tseslint", "globals", "fixup"],
+  //       },
+  //     ],
+  //   },
+  // },
   {
     // eslint-plugin-perfectionist の設定
     plugins: { perfectionist: perfectionistPlugin },
