@@ -3,5 +3,5 @@
   "compilerOptions": {
     "allowJs": true
   },
-  "include": ["app", "lib", ".*.js", "*.js", ".*.mjs", "*.mjs"]
+  "include": ["app", "lib", "types", ".*.js", "*.js", ".*.mjs", "*.mjs"]
 }
