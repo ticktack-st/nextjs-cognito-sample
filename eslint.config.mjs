@@ -18,7 +18,7 @@ const flatCompat = new FlatCompat();
 export default [
   {
     // グローバルで読み込むファイルの拡張子
-    files: ["*.js", "*.jsx", "*.mjs", "*.ts", "*.tsx"],
+    files: ["**/*.{js,mjs,jsx,ts,tsx}"],
   },
   {
     // グローバルで無視するファイル
