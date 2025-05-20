@@ -35,39 +35,71 @@ export default function Page() {
   // }, [setUser, setSession, setIsSignedIn]);
 
   return (
-
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="h-16">
         <h1 className="mt-10 text-3xl font-bold">提出サイトメニュー</h1>
       </div>
       <div className="m-10  flex justify-around flex-wrap">
         <div className="p-4 w-1/2">
+          <Link href="/user-pool">
+            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
+              <h2 className="title-font font-medium text-3xl text-white">
+                ユーザー管理
+              </h2>
+              <p className="leading-relaxed text-white">
+                ログイン方法など設定できる
+              </p>
+            </div>
+          </Link>
+        </div>
+        <div className="p-4 w-1/2">
+          <Link href="/file-upload">
+            <div className="px-4 py-6 rounded-md" />
+          </Link>
+        </div>
+        <div className="p-4 w-1/2">
           <Link href="/file-upload">
             <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
-              <h2 className="title-font font-medium text-3xl text-white">データアップロード</h2>
-              <p className="leading-relaxed text-white">データファイルをアップロードしてください</p>
+              <h2 className="title-font font-medium text-3xl text-white">
+                データアップロード
+              </h2>
+              <p className="leading-relaxed text-white">
+                データファイルをアップロードしてください
+              </p>
             </div>
           </Link>
         </div>
         <div className="p-4 w-1/2">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
-            <h2 className="title-font font-medium text-3xl text-white">🚧過去データダウンロード</h2>
-            <p className="leading-relaxed text-white">過去のデータファイルをダウンロードできます</p>
+            <h2 className="title-font font-medium text-3xl text-white">
+              🚧過去データダウンロード
+            </h2>
+            <p className="leading-relaxed text-white">
+              過去のデータファイルをダウンロードできます
+            </p>
           </div>
         </div>
         <div className="p-4 w-1/2">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
-            <h2 className="title-font font-medium text-3xl text-white">🚧提出履歴確認</h2>
-            <p className="leading-relaxed text-white">過去の提出履歴を確認できます</p>
+            <h2 className="title-font font-medium text-3xl text-white">
+              🚧提出履歴確認
+            </h2>
+            <p className="leading-relaxed text-white">
+              過去の提出履歴を確認できます
+            </p>
           </div>
         </div>
         <div className="p-4 w-1/2">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
-            <h2 className="title-font font-medium text-3xl text-white">🚧取得ツールダウンロード</h2>
-            <p className="leading-relaxed text-white">取得ツールダウンロード画面へ</p>
+            <h2 className="title-font font-medium text-3xl text-white">
+              🚧取得ツールダウンロード
+            </h2>
+            <p className="leading-relaxed text-white">
+              取得ツールダウンロード画面へ
+            </p>
           </div>
         </div>
       </div>
     </div>
-  )
-};
+  );
+}
