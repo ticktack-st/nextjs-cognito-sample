@@ -1,3 +1,5 @@
+"use client";
+
 // import { useEffect, useState } from "react";
 // import { Amplify } from "aws-amplify";
 // import {
@@ -7,9 +9,78 @@
 // import {
 //   configPoolA,
 // } from "./configure"
+// import { cookies } from "next/headers";
+// import type { NextRequest } from 'next/server'
+
+import { Amplify } from "aws-amplify";
+import { signInWithRedirect } from "aws-amplify/auth";
+// import { Hub } from "aws-amplify/utils";
 import Link from "next/link";
 
+import { configPoolA } from "./configure";
+
+// const allCookies = request.cookies.getAll()
+// console.log(allCookies);
+import "aws-amplify/auth/enable-oauth-listener";
+//     const checkSession = async () => {
+//       try {
+//         const session = await fetchAuthSession();
+//         console.log('ID Token:', session.tokens?.idToken);
+//         console.log('Access Token:', session.tokens?.accessToken);
+//       } catch (error) {
+//         console.error('セッションの取得に失敗しましたわ:', error);
+//       }
+//     };
+
+//     checkSession();
+//   }, []);
+
+// let session = await fetchAuthSession();
+// console.log("session", session);
+// if (
+//   typeof session.tokens?.accessToken == "undefined" &&
+//   typeof session.tokens?.idToken == "undefined"
+// ) {
+//   // Amplify.configure(configPoolA, {
+//   //   ssr: true,
+//   // });
+
+//   // signInWithRedirect();
+//   session = await fetchAuthSession();
+//   console.log("%o", session);
+// }
+
+//   return <p>ログイン処理中ですわ…</p>;
+// }
+// Hub.listen("auth", async ({ payload }) => {
+//   switch (payload.event) {
+//     case "signInWithRedirect": {
+//       const user = await getCurrentUser();
+//       const userAttributes = await fetchUserAttributes();
+//       console.log({ user, userAttributes });
+//       break;
+//     }
+//     case "signInWithRedirect_failure":
+//       signInWithRedirect();
+//       break;
+//     case "customOAuthState": {
+//       const state = payload.data; // this will be customState provided on signInWithRedirect function
+//       console.log(state);
+//       break;
+//     }
+//   }
+// });
+
+// const session = await fetchAuthSession();
+Amplify.configure(configPoolA, {
+  ssr: true,
+});
+
 export default function Page() {
+  signInWithRedirect();
+  // console.log("id token", session.tokens?.idToken);
+  // console.log("access token", session.tokens?.accessToken);
+  // const jwtdata = localStorage.getItem("CognitoIdentityServiceProvider.68gum8efm44fbnotgqvq3651jq.oauthPKCE");
   //   const [user, setUser] = useState<string>("");
   //   const [session, setSession] = useState<string>("");
   //   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);

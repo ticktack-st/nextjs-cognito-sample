@@ -7,9 +7,10 @@ export const configPoolA: ResourcesConfig = {
       userPoolClientId: "68gum8efm44fbnotgqvq3651jq",
       loginWith: {
         oauth: {
-          domain: 'ap-northeast-1fvgvh0wsz.auth.ap-northeast-1.amazoncognito.com',
+          domain:
+            "ap-northeast-1fvgvh0wsz.auth.ap-northeast-1.amazoncognito.com",
           scopes: ["openid"],
-          redirectSignIn: ["http://localhost:3000"],
+          redirectSignIn: ["http://localhost:3000/logged-in"],
           redirectSignOut: ["http://localhost:3000"],
           responseType: "code",
         },
@@ -25,7 +26,8 @@ export const configPoolB: ResourcesConfig = {
       userPoolClientId: "7n84i7ncvb3096rq07q3pe4fk1",
       loginWith: {
         oauth: {
-          domain: 'ap-northeast-1h59uj2q34.auth.ap-northeast-1.amazoncognito.com',
+          domain:
+            "ap-northeast-1h59uj2q34.auth.ap-northeast-1.amazoncognito.com",
           scopes: ["openid"],
           redirectSignIn: ["http://localhost:3000"],
           redirectSignOut: ["http://localhost:3000"],
