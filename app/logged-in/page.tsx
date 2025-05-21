@@ -10,13 +10,15 @@ import {
 } from "aws-amplify/auth";
 import { Hub } from "aws-amplify/utils";
 
-import { configPoolA } from "../configure";
 
-Amplify.configure(configPoolA, {
-  ssr: true,
-});
+import { configPoolA } from "../configure";
+console.log("configPoolA");
+
+Amplify.configure(configPoolA, { ssr: true });
+console.log("configPoolAA");
 
 Hub.listen("auth", async ({ payload }) => {
+  console.log("Hub listen auth");
   switch (payload.event) {
     case "signInWithRedirect": {
       const user = await getCurrentUser();
@@ -25,9 +27,11 @@ Hub.listen("auth", async ({ payload }) => {
       break;
     }
     case "signInWithRedirect_failure":
+      console.log("signInWithRedirect_failure");
       // handle sign in failure
       break;
     case "customOAuthState": {
+      console.log("customOAuthState");
       const state = payload.data; // this will be customState provided on signInWithRedirect function
       console.log(state);
       break;
@@ -36,6 +40,7 @@ Hub.listen("auth", async ({ payload }) => {
 });
 
 export default function AuthCallback() {
+  console.log("configPoolAAA");
   // const user = await getCurrentUser();
   // console.log("Current user:");
   // console.log("Current user:", user);

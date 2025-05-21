@@ -4,12 +4,20 @@ export const configPoolA: ResourcesConfig = {
   Auth: {
     Cognito: {
       userPoolId: "ap-northeast-1_fVGVH0WsZ",
-      userPoolClientId: "68gum8efm44fbnotgqvq3651jq",
+      userPoolClientId: "1d27eld0o3b5onl981729npi0s",
+      // identityPoolId: "ap-northeast-1:bb11347a-a89d-42c5-a6f3-078322d19843",
+      // signUpVerificationMethod: "code",
+      // userAttributes: {
+      //   email: {
+      //     required: true,
+      //   },
+      // },
+      // allowGuestAccess: true,
       loginWith: {
         oauth: {
           domain:
             "ap-northeast-1fvgvh0wsz.auth.ap-northeast-1.amazoncognito.com",
-          scopes: ["openid"],
+          scopes: ["email", "openid"],
           redirectSignIn: ["http://localhost:3000/logged-in"],
           redirectSignOut: ["http://localhost:3000"],
           responseType: "code",
