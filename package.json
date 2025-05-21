@@ -1,27 +1,27 @@
 {
   "name": "nextjs-cognito-sample",
   "version": "0.1.0",
+  "description": "Amplify Gen2を使ったNext.jsのサンプルアプリケーションです。",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@aws-amplify/backend-function": "^1.14.1",
-    "@aws-amplify/ui-react": "^6.11.2",
     "@aws-sdk/client-s3": "^3.812.0",
     "@aws-sdk/credential-provider-cognito-identity": "^3.812.0",
-    "@aws-sdk/fetch-http-handler": "^3.374.0",
     "@aws-sdk/signature-v4": "^3.374.0",
     "@prisma/client": "^6.8.2",
-    "@radix-ui/react-slot": "^1.2.2",
+    "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/postcss": "^4.1.7",
     "aws-amplify": "^6.14.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.511.0",
     "next": "^15.3.2",
     "postcss": "^8.5.3",
     "react": "^19.1.0",
