@@ -1,50 +1,48 @@
 {
+  "files": ["next-env.d.ts", "next.config.ts", "postcss.config.mjs"],
+  "include": [
+    "src/**/*.{ts,tsx,js,jsx,mjs,mjsx}",
+    "tests/**/*.{ts,tsx,js,jsx,mjs,mjsx}",
+    "amplify/**/*.{ts,tsx,js,jsx,mjs,mjsx}",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", "eslint.config.mjs"],
+  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "*"
-      ]
-    },
-    "target": "ES2022",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "ES2024",
+    "lib": ["ES2024", "dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
     "allowJs": true,
+    "checkJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "incremental": true,
-    "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "jsx": "preserve",
+    "isolatedModules": true,
+    "incremental": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUmdGlobalAccess": false,
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
-    "checkJs": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "allowUnusedLabels": true,
-    "allowUnreachableCode": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "plugins": [
       {
         "name": "next"
       }
-    ],
-  },
-  "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "amplify"
-  ]
+    ]
+  }
 }
