@@ -2,47 +2,51 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import next from "@next/eslint-plugin-next";
-import importPlugin from "eslint-plugin-import";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 import perfectionistPlugin from "eslint-plugin-perfectionist";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import securityPlugin from "eslint-plugin-security";
-// import spellcheckPlugin from "eslint-plugin-spellcheck";
 import unusedImportsPlugin from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-const flatCompat = new FlatCompat();
+const flatCompat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
 
 export default [
+  // NextJs推奨設定
+  ...flatCompat.config({
+    extends: ["next", "next/typescript", "next/core-web-vitals", "prettier"],
+    settings: {
+      next: {
+        rootDir: ".",
+      },
+    },
+  }),
+  // global設定
   {
-    // グローバルで読み込むファイルの拡張子
-    files: ["**/*.{js,mjs,jsx,ts,tsx}"],
-  },
-  {
-    // グローバルで無視するファイル
-    ignores: [
-      "**/.amplify/**/*",
-      "**/.next/**/*",
-      "**/.vscode/**/*",
-      "**/amplify/**/*",
-      "**/components/**/*",
-      "**/node_modules/**/*",
-      "**/prisma/**/*",
-      "**/public/**/*",
-      "**/dist/**/*",
-      "eslint.config.mjs",
-      "next.config.ts",
-      "next-env.d.ts",
-      "postcss.config.mjs",
-      "tailwind.config.js",
-      "tsconfig.json",
-      "tsconfig.eslint.json",
-      "app/configure.ts",
+    files: [
+      "**/*.{js,mjs,jsx,ts,tsx}, tests/**/*.{js,mjs,jsx,ts,tsx}, amplify/**/*.{js,mjs,jsx,ts,tsx}",
     ],
   },
   {
+    ignores: [
+      ".amplify/**/*",
+      ".next/**/*",
+      ".vscode/**/*",
+      "node_modules/**/*",
+      "prisma/**/*",
+      "eslint.config.mjs",
+    ],
+  },
+  reactPlugin.configs.flat.recommended,
+  reactPlugin.configs.flat["jsx-runtime"],
+  {
+    files: [
+      "**/*.{js,mjs,jsx,ts,tsx}, tests/**/*.{js,mjs,jsx,ts,tsx}, amplify/**/*.{js,mjs,jsx,ts,tsx}",
+    ],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -53,6 +57,7 @@ export default [
       parser: tseslint.parser,
       parserOptions: {
         project: "./tsconfig.eslint.json",
+        tsconfigRootDir: ".",
         ecmaFeatures: {
           jsx: true,
         },
@@ -73,21 +78,8 @@ export default [
       ...securityPlugin.configs.recommended.rules,
     },
   },
-  // Shareable Configs を有効化
   js.configs.recommended,
   ...tseslint.configs.strict,
-  reactPlugin.configs.flat.recommended,
-  reactPlugin.configs.flat["jsx-runtime"],
-  // Flat Config 未対応のプラグインは FlatCompat を使用
-  // ...flatCompat.extends("plugin:react-hooks/recommended"),
-  // ESLint v9 で削除された API "context.getScope" を内部で使用しているプラグインは fixupConfigRules で対応
-  // ...fixupConfigRules(
-  //   flatCompat.extends(
-  //     // "plugin:import/recommended", // TODO: 現時点だと色々動かないので eslint-plugin-import が Flat Config に対応したら有効化する
-  //     "plugin:testing-library/react",
-  //     "plugin:storybook/recommended"
-  //   )
-  // ),
   {
     // eslint-plugin-react の設定
     settings: {
@@ -110,43 +102,37 @@ export default [
       "react/prop-types": "off", // Props の型チェックは TS で行う & 誤検知があるため無効化
     },
   },
-  {
-    // eslint-plugin-react-hooks の設定
-    rules: {
-      "react-hooks/exhaustive-deps": "error", // recommended では warn のため error に上書き
-    },
-  },
-  {
-    // eslint-plugin-import の設定
-    plugins: { import: importPlugin },
-    rules: {
-      "import/order": [
-        // import の並び順を設定
-        "warn",
-        {
-          groups: [
-            "builtin",
-            "external",
-            "internal",
-            ["parent", "sibling"],
-            "object",
-            "type",
-            "index",
-          ],
-          "newlines-between": "always",
-          pathGroupsExcludedImportTypes: ["builtin"],
-          alphabetize: { order: "asc", caseInsensitive: true },
-          pathGroups: [
-            {
-              pattern: "react",
-              group: "external",
-              position: "before",
-            },
-          ],
-        },
-      ],
-    },
-  },
+  // {
+  //   // eslint-plugin-import の設定
+  //   plugins: { import: importPlugin },
+  //   rules: {
+  //     "import/order": [
+  //       // import の並び順を設定
+  //       "warn",
+  //       {
+  //         groups: [
+  //           "builtin",
+  //           "external",
+  //           "internal",
+  //           ["parent", "sibling"],
+  //           "object",
+  //           "type",
+  //           "index",
+  //         ],
+  //         "newlines-between": "always",
+  //         pathGroupsExcludedImportTypes: ["builtin"],
+  //         alphabetize: { order: "asc", caseInsensitive: true },
+  //         pathGroups: [
+  //           {
+  //             pattern: "react",
+  //             group: "external",
+  //             position: "before",
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  // },
   {
     // eslint-plugin-unused-imports の設定
     plugins: { "unused-imports": unusedImportsPlugin },
@@ -164,20 +150,6 @@ export default [
       ],
     },
   },
-  // {
-  //   // eslint-plugin-spellcheck の設定
-  //   plugins: { spellcheck: spellcheckPlugin },
-  //   rules: {
-  //     "spellcheck/spell-checker": [
-  //       "error",
-  //       {
-  //         minLength: 5, // 5 文字以上の単語をチェック
-  //         // チェックをスキップする単語の配列
-  //         skipWords: ["noreferrer", "compat", "tseslint", "globals", "fixup"],
-  //       },
-  //     ],
-  //   },
-  // },
   {
     // eslint-plugin-perfectionist の設定
     plugins: { perfectionist: perfectionistPlugin },
@@ -186,7 +158,6 @@ export default [
       "perfectionist/sort-object-types": "warn", // Object 型のプロパティの並び順をアルファベット順に統一
     },
   },
-  // prettierConfig // フォーマット は Prettier で行うため、フォーマット関連のルールを無効化
 ];
 
 // https://zenn.dev/kazukix/articles/eslint-config-2024-09
