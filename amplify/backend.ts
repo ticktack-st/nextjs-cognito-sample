@@ -7,21 +7,18 @@
 
 import { defineBackend } from '@aws-amplify/backend'
 import { Stack } from 'aws-cdk-lib'
-import { Policy, PolicyStatement } from 'aws-cdk-lib/aws-iam'
-import { data } from './data/resource'
-import { defineRds } from './custom/rds/resource'
-import { defineS3 } from './custom/s3/resource'
-import { dbMigration } from './functions/dbMigration/resource'
-import { defineCustomFunction } from './functions/prismaMigrate/resource'
 import {
   AuthorizationType,
   Cors,
   LambdaIntegration,
   RestApi,
 } from 'aws-cdk-lib/aws-apigateway'
-// import { storage } from './custom/s3/resource';
-import * as ec2 from 'aws-cdk-lib/aws-ec2'
-import * as iam from 'aws-cdk-lib/aws-iam'
+import { Policy, PolicyStatement } from 'aws-cdk-lib/aws-iam'
+import { defineRds } from './custom/rds/resource'
+import { defineS3 } from './custom/s3/resource'
+import { data } from './data/resource'
+import { dbMigration } from './functions/dbMigration/resource'
+import { defineCustomFunction } from './functions/prismaMigrate/resource'
 
 const backend = defineBackend({
   data,

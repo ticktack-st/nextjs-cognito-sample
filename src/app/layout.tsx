@@ -1,13 +1,10 @@
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 
 import { Button } from '@/components/ui/button'
 import './globals.css'
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja">
       <head>

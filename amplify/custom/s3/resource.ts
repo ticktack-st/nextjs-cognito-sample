@@ -1,10 +1,10 @@
 import * as cdk from 'aws-cdk-lib'
-import { Stack, StackProps } from 'aws-cdk-lib'
-import * as s3 from 'aws-cdk-lib/aws-s3'
+import { Stack } from 'aws-cdk-lib'
 import * as iam from 'aws-cdk-lib/aws-iam'
+import * as s3 from 'aws-cdk-lib/aws-s3'
 
 export function defineS3({ stack }: { stack: Stack }) {
-  const bucket = new s3.Bucket(stack, 'amplifyFileUploadTestBucket', {
+  const bucket = new s3.Bucket(stack, 'AmplifyFileUploadTestBucket', {
     bucketName: 'amplify-file-upload-test-bucket-ticktack',
     removalPolicy: cdk.RemovalPolicy.DESTROY,
     autoDeleteObjects: true,

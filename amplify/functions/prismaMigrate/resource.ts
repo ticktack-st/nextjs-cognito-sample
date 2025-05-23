@@ -1,16 +1,15 @@
 // import { defineFunction } from '@aws-amplify/backend';
-import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
 import { Runtime } from 'aws-cdk-lib/aws-lambda'
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
 // import * as ec2 from 'aws-cdk-lib/aws-ec2';
 // import { Vpc } from 'aws-cdk-lib/aws-ec2';
 import { Duration } from 'aws-cdk-lib'
 // import * as path from 'path';
 // import { Stack, StackProps } from 'aws-cdk-lib';
 // import { Construct } from 'constructs';
-import { SubnetType } from 'aws-cdk-lib/aws-ec2'
-import { SecurityGroup } from 'aws-cdk-lib/aws-ec2'
-import * as ec2 from 'aws-cdk-lib/aws-ec2'
 import { Stack } from 'aws-cdk-lib'
+import * as ec2 from 'aws-cdk-lib/aws-ec2'
+import { SecurityGroup, SubnetType } from 'aws-cdk-lib/aws-ec2'
 
 // export const prismaMigrateHandler = defineFunction((scope) => {
 
@@ -60,7 +59,7 @@ export function defineCustomFunction({ stack }: { stack: Stack }) {
     'sg-0738e478ff2be7ccb'
   ) // ご自身のセキュリティグループ ID に置き換えてください
 
-  const prismaMigrate = new NodejsFunction(stack, 'prismaMigrate', {
+  const prismaMigrate = new NodejsFunction(stack, 'PrismaMigrate', {
     entry: 'amplify/functions/prismaMigrate/handler.ts',
     runtime: Runtime.NODEJS_22_X,
     timeout: Duration.seconds(20),

@@ -1,7 +1,7 @@
 import { Sha256 } from '@aws-crypto/sha256-browser'
 import { SignatureV4 } from '@aws-sdk/signature-v4'
 
-import type { DescribeUserPoolResponse } from '@/types/userPool'
+import type { DescribeUserPoolResponse } from '@/types/user-pool'
 // import parse from 'html-react-parser';
 
 const credentials = {
@@ -51,15 +51,15 @@ export default async function Page() {
   // );
   const poolDetail: DescribeUserPoolResponse = await signedFetch()
   // console.log("poolDetail", JSON.stringify(poolDetail, null, 4));
-  const jsonString = JSON.stringify(poolDetail, null, 4)
+  const jsonString = JSON.stringify(poolDetail, undefined, 4)
   const pattern1 = /,/g
-  const newStr1 = jsonString.replace(pattern1, ',\n')
+  const newStr1 = jsonString.replaceAll(pattern1, ',\n')
   const pattern2 = /}/g
-  const newStr2 = newStr1.replace(pattern2, '\n}}')
+  const newStr2 = newStr1.replaceAll(pattern2, '\n}}')
   const pattern3 = /{/g
-  const newStr3 = newStr2.replace(pattern3, '{\n')
+  const newStr3 = newStr2.replaceAll(pattern3, '{\n')
   const pattern4 = /\\/g
-  const newStr4 = newStr3.replace(pattern4, '')
+  const newStr4 = newStr3.replaceAll(pattern4, '')
 
   return (
     <section className="body-font overflow-hidden text-gray-600">
