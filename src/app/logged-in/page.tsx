@@ -25,10 +25,12 @@ Hub.listen('auth', async ({ payload }) => {
       console.log({ user, userAttributes })
       break
     }
-    case 'signInWithRedirect_failure':
+    // /* eslint-disable-next-line unicorn/switch-case-braces */
+    case 'signInWithRedirect_failure': {
       console.log('signInWithRedirect_failure')
       // handle sign in failure
       break
+    }
     case 'customOAuthState': {
       console.log('customOAuthState')
       const state = payload.data // this will be customState provided on signInWithRedirect function

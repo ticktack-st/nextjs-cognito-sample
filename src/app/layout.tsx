@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <meta charSet="UTF-8" />
+        <meta charSet="utf8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <title>提出サイト的なもの</title>
       </head>

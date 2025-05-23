@@ -59,7 +59,8 @@ export default [
       unicorn: eslintPluginUnicorn,
     },
     rules: {
-      ...eslintPluginUnicorn.configs.all.rules,
+      ...eslintPluginUnicorn.configs.recommended.rules,
+      'unicorn/prevent-abbreviations': 'off',
     },
   },
   {

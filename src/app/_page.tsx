@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */
+
 // 'use client'
 
 // import { Button } from "@/components/ui/button"

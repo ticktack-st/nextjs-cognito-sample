@@ -31,10 +31,10 @@ export default function Page() {
 }
 
 const FileUploader = () => {
-  const [file, setFile] = useState<File | null>(null)
+  const [file, setFile] = useState<File | null>()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(event.target.files?.[0] || null)
+    setFile(event.target.files?.[0] || undefined)
   }
 
   const handleUpload = async () => {

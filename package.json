@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next lint && next build",
+    "build": "ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs && next build",
     "start": "next start",
     "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs",
     "nextlint": "next lint",
