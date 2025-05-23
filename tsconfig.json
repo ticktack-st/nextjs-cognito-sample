@@ -13,6 +13,7 @@
     "lib": ["ES2024", "dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "Bundler",
+    "moduleDetection": "auto",
     "resolveJsonModule": true,
     "allowJs": true,
     "checkJs": true,
@@ -35,9 +36,10 @@
     "allowUmdGlobalAccess": false,
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
-    "baseUrl": ".",
+    "rootDir": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     },
     "plugins": [
       {

@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
     less \
     zip \
     awscli
-RUN npm install -g npm@11.3 \
+RUN npm install -g npm \
     && npm install -g @aws-amplify/cli \
     && npm install -g npm-check-updates \
     && npm install -g typescript \
+    && npm install -g prettier
