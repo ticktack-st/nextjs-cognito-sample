@@ -1,1 +1,1 @@
-{"statusCode":500,"body":"{\"message\":\"Migration failed\"}"}
+{ "statusCode": 500, "body": "{\"message\":\"Migration failed\"}" }

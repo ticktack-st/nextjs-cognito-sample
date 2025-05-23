@@ -1,12 +1,12 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import { Button } from "@/components/ui/button";
-import "./globals.css";
+import { Button } from '@/components/ui/button'
+import './globals.css'
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="ja">
@@ -40,5 +40,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  );
+  )
 }

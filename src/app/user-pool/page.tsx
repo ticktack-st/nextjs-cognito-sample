@@ -1,65 +1,65 @@
-import { Sha256 } from "@aws-crypto/sha256-browser";
-import { SignatureV4 } from "@aws-sdk/signature-v4";
+import { Sha256 } from '@aws-crypto/sha256-browser'
+import { SignatureV4 } from '@aws-sdk/signature-v4'
 
-import type { DescribeUserPoolResponse } from "@/types/userPool";
+import type { DescribeUserPoolResponse } from '@/types/userPool'
 // import parse from 'html-react-parser';
 
 const credentials = {
-  accessKeyId: "",
-  secretAccessKey: "",
-  sessionToken: "",
-};
+  accessKeyId: '',
+  secretAccessKey: '',
+  sessionToken: '',
+}
 
 async function signedFetch(): Promise<DescribeUserPoolResponse> {
   const signer = new SignatureV4({
     credentials,
-    region: "ap-northeast-1",
-    service: "execute-api",
+    region: 'ap-northeast-1',
+    service: 'execute-api',
     sha256: Sha256,
-  });
+  })
 
   const request = {
-    method: "GET",
-    protocol: "https:",
-    hostname: "kf2lbige8i.execute-api.ap-northeast-1.amazonaws.com",
-    path: "/dev/user-pool?testtest=1",
+    method: 'GET',
+    protocol: 'https:',
+    hostname: 'kf2lbige8i.execute-api.ap-northeast-1.amazonaws.com',
+    path: '/dev/user-pool?testtest=1',
     headers: {
-      host: "kf2lbige8i.execute-api.ap-northeast-1.amazonaws.com",
+      host: 'kf2lbige8i.execute-api.ap-northeast-1.amazonaws.com',
     },
-  };
+  }
 
-  const signedRequest = await signer.sign(request);
-  console.log("signedRequest", signedRequest);
+  const signedRequest = await signer.sign(request)
+  console.log('signedRequest', signedRequest)
 
   if (credentials.sessionToken) {
-    signedRequest.headers["X-Amz-Security-Token"] = credentials.sessionToken;
+    signedRequest.headers['X-Amz-Security-Token'] = credentials.sessionToken
   }
-  const url = `${request.protocol}//${request.hostname}${request.path}`;
-  console.log("url", url);
+  const url = `${request.protocol}//${request.hostname}${request.path}`
+  console.log('url', url)
   const response = await fetch(url, {
     method: signedRequest.method,
     headers: signedRequest.headers,
-  });
+  })
 
-  const data = await response.json();
-  return data.body;
+  const data = await response.json()
+  return data.body
 }
 
 export default async function Page() {
   // const data = await fetch(
   //   "https://kf2lbige8i.execute-api.ap-northeast-1.amazonaws.com/dev/user-pool?testtest=1"
   // );
-  const poolDetail: DescribeUserPoolResponse = await signedFetch();
+  const poolDetail: DescribeUserPoolResponse = await signedFetch()
   // console.log("poolDetail", JSON.stringify(poolDetail, null, 4));
-  const jsonString = JSON.stringify(poolDetail, null, 4);
-  const pattern1 = /,/g;
-  const newStr1 = jsonString.replace(pattern1, ",\n");
-  const pattern2 = /\}/g;
-  const newStr2 = newStr1.replace(pattern2, "\n}}");
-  const pattern3 = /\{/g;
-  const newStr3 = newStr2.replace(pattern3, "{\n");
-  const pattern4 = /\\/g;
-  const newStr4 = newStr3.replace(pattern4, "");
+  const jsonString = JSON.stringify(poolDetail, null, 4)
+  const pattern1 = /,/g
+  const newStr1 = jsonString.replace(pattern1, ',\n')
+  const pattern2 = /\}/g
+  const newStr2 = newStr1.replace(pattern2, '\n}}')
+  const pattern3 = /\{/g
+  const newStr3 = newStr2.replace(pattern3, '{\n')
+  const pattern4 = /\\/g
+  const newStr4 = newStr3.replace(pattern4, '')
 
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -74,9 +74,7 @@ export default async function Page() {
             {/* <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col"> */}
             {/* <span className="font-semibold title-font text-gray-700"> */}
             {/* {JSON.stringify(poolDetail)} */}
-            <pre>
-              {newStr4}
-            </pre>
+            <pre>{newStr4}</pre>
             {/* </span>
               <span className="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
             </div>
@@ -133,7 +131,7 @@ export default async function Page() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 // function objectToHtmlList(obj: DescribeUserPoolResponse, indent: number = 0): string {

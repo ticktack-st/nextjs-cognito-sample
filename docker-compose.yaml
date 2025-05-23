@@ -1,11 +1,11 @@
 services:
- nextjs:
-   build:
-     context: .
-     dockerfile: Dockerfile
-   ports:
-     - "3000:3000"
-   volumes:
-     - .:/app
-   stdin_open: true
-   tty: true
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true

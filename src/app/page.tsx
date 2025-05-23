@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 // import { useEffect, useState } from "react";
 // import { Amplify } from "aws-amplify";
@@ -12,16 +12,16 @@
 // import { cookies } from "next/headers";
 // import type { NextRequest } from 'next/server'
 
-import { Amplify } from "aws-amplify";
-import { signInWithRedirect } from "aws-amplify/auth";
+import { Amplify } from 'aws-amplify'
+import { signInWithRedirect } from 'aws-amplify/auth'
 // import { Hub } from "aws-amplify/utils";
-import Link from "next/link";
+import Link from 'next/link'
 
-import { configPoolA } from "./configure";
+import { configPoolA } from './configure'
 
 // const allCookies = request.cookies.getAll()
 // console.log(allCookies);
-import "aws-amplify/auth/enable-oauth-listener";
+import 'aws-amplify/auth/enable-oauth-listener'
 //     const checkSession = async () => {
 //       try {
 //         const session = await fetchAuthSession();
@@ -74,10 +74,10 @@ import "aws-amplify/auth/enable-oauth-listener";
 // const session = await fetchAuthSession();
 Amplify.configure(configPoolA, {
   ssr: true,
-});
+})
 
 export default function Page() {
-  signInWithRedirect();
+  signInWithRedirect()
   // console.log("id token", session.tokens?.idToken);
   // console.log("access token", session.tokens?.accessToken);
   // const jwtdata = localStorage.getItem("CognitoIdentityServiceProvider.68gum8efm44fbnotgqvq3651jq.oauthPKCE");
@@ -172,5 +172,5 @@ export default function Page() {
         </div>
       </div>
     </div>
-  );
+  )
 }

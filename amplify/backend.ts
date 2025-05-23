@@ -5,85 +5,85 @@
  * ここで呼び出されないものはデプロイされません。
  */
 
-import { defineBackend } from '@aws-amplify/backend';
-import { Stack } from "aws-cdk-lib";
-import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
-import { data } from './data/resource';
-import { defineRds } from './custom/rds/resource';
-import { defineS3 } from './custom/s3/resource';
-import { dbMigration } from './functions/dbMigration/resource';
-import { defineCustomFunction } from './functions/prismaMigrate/resource';
+import { defineBackend } from '@aws-amplify/backend'
+import { Stack } from 'aws-cdk-lib'
+import { Policy, PolicyStatement } from 'aws-cdk-lib/aws-iam'
+import { data } from './data/resource'
+import { defineRds } from './custom/rds/resource'
+import { defineS3 } from './custom/s3/resource'
+import { dbMigration } from './functions/dbMigration/resource'
+import { defineCustomFunction } from './functions/prismaMigrate/resource'
 import {
   AuthorizationType,
   Cors,
   LambdaIntegration,
   RestApi,
-} from "aws-cdk-lib/aws-apigateway";
+} from 'aws-cdk-lib/aws-apigateway'
 // import { storage } from './custom/s3/resource';
-import * as ec2 from 'aws-cdk-lib/aws-ec2';
-import * as iam from 'aws-cdk-lib/aws-iam';
+import * as ec2 from 'aws-cdk-lib/aws-ec2'
+import * as iam from 'aws-cdk-lib/aws-iam'
 
 const backend = defineBackend({
   data,
   dbMigration,
   // storage,
   // prismaMigrateHandler
-});
+})
 
 const rds = defineRds({
   stack: backend.createStack('RDSStack'),
-});
+})
 const prismaMigrate = defineCustomFunction({
   stack: backend.createStack('PrismaMigrateStack'),
-});
+})
 const s3 = defineS3({
   stack: backend.createStack('S3Stack'),
-});
+})
 
 // create a new API stack
-const apiStack = backend.createStack("api-stack");
+const apiStack = backend.createStack('api-stack')
 // create a new REST API
-const myRestApi = new RestApi(apiStack, "RestApi", {
-  restApiName: "myRestApi",
+const myRestApi = new RestApi(apiStack, 'RestApi', {
+  restApiName: 'myRestApi',
   deploy: true,
   deployOptions: {
-    stageName: "dev",
+    stageName: 'dev',
   },
   defaultCorsPreflightOptions: {
     allowOrigins: Cors.ALL_ORIGINS, // Restrict this to domains you trust
     allowMethods: Cors.ALL_METHODS, // Specify only the methods you need to allow
     allowHeaders: Cors.DEFAULT_HEADERS, // Specify only the headers you need to allow
   },
-});
+})
 // create a new Lambda integration
 const lambdaIntegration = new LambdaIntegration(
   backend.dbMigration.resources.lambda
-);
+)
 // create a new resource path with IAM authorization
-const itemsPath = myRestApi.root.addResource("items", {
+const itemsPath = myRestApi.root.addResource('items', {
   defaultMethodOptions: {
     authorizationType: AuthorizationType.IAM,
   },
-});
-itemsPath.addMethod("GET", lambdaIntegration);
+})
+itemsPath.addMethod('GET', lambdaIntegration)
 // add a proxy resource path to the API
 itemsPath.addProxy({
   anyMethod: true,
   defaultIntegration: lambdaIntegration,
-});
+})
 
 // create a new IAM policy to allow Invoke access to the API
-const apiRestPolicy = new Policy(apiStack, "RestApiPolicy", {
+const apiRestPolicy = new Policy(apiStack, 'RestApiPolicy', {
   statements: [
     new PolicyStatement({
-      actions: ["execute-api:Invoke"],
+      actions: ['execute-api:Invoke'],
       resources: [
-        `${myRestApi.arnForExecuteApi("*", "/items", "dev")}`,
-        `${myRestApi.arnForExecuteApi("*", "/items/*", "dev")}`,
+        `${myRestApi.arnForExecuteApi('*', '/items', 'dev')}`,
+        `${myRestApi.arnForExecuteApi('*', '/items/*', 'dev')}`,
       ],
     }),
   ],
-});
+})
 
 // const vpc = ec2.Vpc.fromLookup(backend.createStack('VpcLookupStack'), 'ExistingVPC', {
 //   vpcId: 'vpc-0103532b9805239be', // ご自身の VPC ID に置き換えてください
@@ -104,7 +104,7 @@ const apiRestPolicy = new Policy(apiStack, "RestApiPolicy", {
 //   iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AWSLambdaVPCAccessExecutionRole')
 // );
 
-+ backend.addOutput({
+;+backend.addOutput({
   custom: {
     helloWorldFunctionName: backend.dbMigration.resources.lambda.functionName,
     API: {
@@ -115,4 +115,4 @@ const apiRestPolicy = new Policy(apiStack, "RestApiPolicy", {
       },
     },
   },
-});
+})
