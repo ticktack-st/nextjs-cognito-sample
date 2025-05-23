@@ -54,23 +54,23 @@ export default async function Page() {
   const jsonString = JSON.stringify(poolDetail, null, 4)
   const pattern1 = /,/g
   const newStr1 = jsonString.replace(pattern1, ',\n')
-  const pattern2 = /\}/g
+  const pattern2 = /}/g
   const newStr2 = newStr1.replace(pattern2, '\n}}')
-  const pattern3 = /\{/g
+  const pattern3 = /{/g
   const newStr3 = newStr2.replace(pattern3, '{\n')
   const pattern4 = /\\/g
   const newStr4 = newStr3.replace(pattern4, '')
 
   return (
-    <section className="text-gray-600 body-font overflow-hidden">
-      <div className="container px-5 py-5 mx-auto">
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-10">
+    <section className="body-font overflow-hidden text-gray-600">
+      <div className="container mx-auto px-5 py-5">
+        <h1 className="mb-10 text-center text-3xl font-bold text-gray-900">
           ユーザープール設定
         </h1>
       </div>
-      <div className="container px-5 py-5 mx-auto">
+      <div className="container mx-auto px-5 py-5">
         <div className="-my-8 divide-y-2 divide-gray-100">
-          <div className="py-8 flex flex-wrap md:flex-nowrap">
+          <div className="flex flex-wrap py-8 md:flex-nowrap">
             {/* <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col"> */}
             {/* <span className="font-semibold title-font text-gray-700"> */}
             {/* {JSON.stringify(poolDetail)} */}

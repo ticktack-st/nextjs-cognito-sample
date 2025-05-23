@@ -14,13 +14,13 @@ Amplify.configure(configPoolA)
 export default function Page() {
   return (
     <main>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="h-16">
           <h1 className="mt-10 text-3xl font-bold">ファイルアップロード</h1>
         </div>
-        <div className="m-10  flex justify-around flex-wrap">
-          <div className="p-4 w-1/2">
-            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg bg-green-800 rounded-md hover:bg-green-600">
+        <div className="m-10 flex flex-wrap justify-around">
+          <div className="w-1/2 p-4">
+            <div className="rounded-lg rounded-md border-2 border-gray-200 bg-green-800 px-4 py-6 hover:bg-green-600">
               <FileUploader />
             </div>
           </div>

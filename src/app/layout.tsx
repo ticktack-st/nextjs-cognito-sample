@@ -17,9 +17,9 @@ export default function RootLayout({
       </head>
       <body className="bg-gray-100 text-gray-900">
         {/* <!-- ヘッダ --> */}
-        <header className="bg-gray-300 w-full border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
+        <header className="w-full border-b border-gray-200 bg-gray-300">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
               {/* <!-- ロゴ部分 --> */}
               <div className="flex-shrink-0">
                 <Link className="text-xl font-semibold text-gray-900" href="#">
@@ -29,7 +29,7 @@ export default function RootLayout({
 
               {/* <!-- アクションボタン --> */}
               <div className="flex items-center space-x-4">
-                <Button className="inline-block px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-md hover:bg-gray-600">
+                <Button className="inline-block rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600">
                   ログイン
                 </Button>
               </div>
