@@ -13,6 +13,7 @@ export default [
       '.vscode/**/*',
       'node_modules/**/*',
       'prisma/**/*',
+      '**/dist/**/*',
       'eslint.config.mjs',
     ],
   },
@@ -30,6 +31,7 @@ export default [
       parser: tseslint.parser,
       parserOptions: {
         projectService: true,
+        project: './tsconfig.eslint.json',
         tsconfigRootDir: import.meta.dirname,
         ecmaFeatures: {
           jsx: true,
@@ -41,13 +43,13 @@ export default [
   // ルール適用
   {
     // 基本ルール適用
-    files: ['src/**/*.{js,mjs,jsx,ts,tsx}, tests/**/*.{js,mjs,jsx,ts,tsx}'],
+    files: ['src/**/*.{js,mjs,jsx,ts,tsx}', 'tests/**/*.{js,mjs,jsx,ts,tsx}'],
     plugins: {
       eslint: eslint,
       tseslint: tseslint,
     },
     rules: {
-      ...eslint.configs.all.rules,
+      ...eslint.configs.recommended.rules,
       ...tseslint.configs.strict.rules,
       ...tseslint.configs.stylistic.rules,
     },
@@ -71,6 +73,7 @@ export default [
     },
     rules: {
       ...eslintCdkPlugin.configs.strict.rules,
+      'cdk/require-passing-this': 'off', // amplify特有の仕様によりoff
     },
   },
 ]

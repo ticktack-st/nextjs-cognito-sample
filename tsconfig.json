@@ -1,12 +1,7 @@
 {
-  "files": ["next-env.d.ts", "next.config.ts", "postcss.config.mjs"],
-  "include": [
-    "src/**/*.{ts,tsx,js,jsx,mjs,mjsx}",
-    "tests/**/*.{ts,tsx,js,jsx,mjs,mjsx}",
-    "amplify/**/*.{ts,tsx,js,jsx,mjs,mjsx}",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules", "eslint.config.mjs"],
+  "files": ["next-env.d.ts", "next.config.js", "postcss.config.mjs"],
+  "include": ["src/**/*", "tests/**/*", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "amplify", "eslint.config.mjs"],
   "compileOnSave": false,
   "compilerOptions": {
     "target": "ES2024",
