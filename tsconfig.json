@@ -1,5 +1,10 @@
 {
-  "files": ["next-env.d.ts", "next.config.js", "postcss.config.mjs"],
+  "files": [
+    "next-env.d.ts",
+    "next.config.js",
+    "postcss.config.mjs",
+    "stylelint.config.mjs"
+  ],
   "include": ["src/**/*", "tests/**/*", ".next/types/**/*.ts"],
   "exclude": ["node_modules", "amplify", "eslint.config.mjs"],
   "compileOnSave": false,
