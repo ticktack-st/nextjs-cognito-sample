@@ -6,12 +6,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "lint": "stylelint '**/*.{css,js,mjs,jsx,ts,tsx}' && next lint",
-    "build": "stylelint '**/*.{css,js,mjs,jsx,ts,tsx}' && ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs && next lint && next build",
+    "lint": "stylelint '**/*.css' && next lint",
+    "build": "stylelint '**/*.css' && ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs && next lint && next build",
     "testbuild": "next build",
     "start": "next start",
     "eslint": "ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs",
-    "stylelint": "stylelint '**/*.{css,js,mjs,jsx,ts,tsx}'",
+    "nextlint": "next lint",
+    "stylelint": "stylelint '**/*.css'",
     "format": "prettier --config .prettierrc --write .",
     "typecheck": "tsc --skipLibCheck true --noEmit",
     "typecheck:full": "tsc --skipLibCheck false --noEmit"

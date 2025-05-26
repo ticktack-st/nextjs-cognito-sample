@@ -14,6 +14,10 @@ export default [
       'node_modules/**/*',
       'prisma/**/*',
       '**/dist/**/*',
+      'next-env.d.ts',
+      'next.config.js',
+      'postcss.config.mjs',
+      'stylelint.config.mjs',
       'eslint.config.mjs',
     ],
   },
@@ -43,7 +47,14 @@ export default [
   // ルール適用
   {
     // 基本ルール適用
-    files: ['src/**/*.{js,mjs,jsx,ts,tsx}', 'tests/**/*.{js,mjs,jsx,ts,tsx}'],
+    files: [
+      'src/**/*.{js,mjs,jsx,ts,tsx}',
+      'tests/**/*.{js,mjs,jsx,ts,tsx}',
+      'next-env.d.ts',
+      'next.config.js',
+      'postcss.config.mjs',
+      'stylelint.config.mjs',
+    ],
     plugins: {
       eslint: eslint,
       tseslint: tseslint,
