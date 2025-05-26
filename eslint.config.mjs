@@ -1,4 +1,5 @@
 import eslint from '@eslint/js'
+import vitestlint from '@vitest/eslint-plugin'
 import eslintCdkPlugin from 'eslint-cdk-plugin'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import globals from 'globals'
@@ -74,6 +75,16 @@ export default [
     rules: {
       ...eslintPluginUnicorn.configs.recommended.rules,
       'unicorn/prevent-abbreviations': 'off',
+    },
+  },
+  {
+    // vitestには専用のプラグインを適用
+    files: ['tests/**'],
+    plugins: {
+      vitest: vitestlint,
+    },
+    rules: {
+      ...vitestlint.configs.recommended.rules,
     },
   },
   {
