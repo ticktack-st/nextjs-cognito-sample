@@ -12,6 +12,18 @@ const dirname =
 export default defineConfig({
   test: {
     workspace: [
+      // logic tests
+      {
+        test: {
+          name: 'node',
+          include: ['tests/**/*.test.{js,mjs,jsx,ts,tsx}'],
+          environment: 'node',
+          alias: {
+            '@': path.resolve(dirname, './src'),
+          },
+        },
+      },
+      // storybook tests
       {
         extends: true,
         plugins: [
