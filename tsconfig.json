@@ -5,7 +5,13 @@
     "postcss.config.mjs",
     "stylelint.config.mjs"
   ],
-  "include": ["src/**/*", "tests/**/*", ".next/types/**/*.ts"],
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    ".next/types/**/*.ts",
+    ".storybook/**/*",
+    "vite.config.ts"
+  ],
   "exclude": ["node_modules", "amplify", "eslint.config.mjs"],
   "compileOnSave": false,
   "compilerOptions": {

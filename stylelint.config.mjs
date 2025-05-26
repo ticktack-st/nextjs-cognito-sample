@@ -12,7 +12,7 @@ export default {
     //   'postcss.config.mjs',
     //   'stylelint.config.mjs',
     //   'eslint.config.mjs',
-    'src/app/globals.css',
+    'src/app/globals.css', // tailwindcss global stylesを設定しているため
   ],
   extends: [
     'stylelint-config-recommended',

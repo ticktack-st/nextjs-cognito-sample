@@ -9,9 +9,11 @@ RUN apt-get update && apt-get install -y \
     curl \
     less \
     zip \
-    awscli
+    awscli \
+    xdg-utils
 RUN npm install -g npm \
     && npm install -g @aws-amplify/cli \
     && npm install -g npm-check-updates \
     && npm install -g typescript \
     && npm install -g prettier
+# RUN npx playwright install-deps
