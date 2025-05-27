@@ -6,6 +6,7 @@ export default {
     //   '.vscode/**/*',
     //   'node_modules/**/*',
     //   'prisma/**/*',
+    'coverage/**/*',
     //   '**/dist/**/*',
     //   'next-env.d.ts',
     //   'next.config.js',

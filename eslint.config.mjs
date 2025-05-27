@@ -14,6 +14,7 @@ export default [
       '.vscode/**/*',
       'node_modules/**/*',
       'prisma/**/*',
+      'coverage/**/*',
       '**/dist/**/*',
       'eslint.config.mjs',
     ],
